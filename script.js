@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PRADEEP K PORTFOLIO - INTERACTIVE JAVASCRIPT
+   Pradeepa K PORTFOLIO - INTERACTIVE JAVASCRIPT
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,22 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
     const navLinkItems = document.querySelectorAll('.nav-link');
-    
+
     const resumeBtn = document.getElementById('resumeBtn');
     const resumeModal = document.getElementById('resumeModal');
     const closeResumeModal = document.getElementById('closeResumeModal');
     const downloadPdfBtn = document.getElementById('downloadPdfBtn');
-    
+
     const projectModal = document.getElementById('projectModal');
     const closeProjectModal = document.getElementById('closeProjectModal');
     const closeProjectModalBtn = document.getElementById('closeProjectModalBtn');
     const openDemoBtns = document.querySelectorAll('.open-demo-btn');
     const modalProjectTitle = document.getElementById('modalProjectTitle');
     const modalProjectDesc = document.getElementById('modalProjectDesc');
-    
+
     const filterBtns = document.querySelectorAll('.filter-btn');
     const skillCards = document.querySelectorAll('.skill-card');
-    
+
     const contactForm = document.getElementById('contactForm');
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMsg');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
-        
+
         // Highlight active nav item based on scroll position
         highlightActiveNav();
     });
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             const title = btn.getAttribute('data-title');
             const desc = btn.getAttribute('data-desc');
-            
+
             if (modalProjectTitle) modalProjectTitle.textContent = title;
             if (modalProjectDesc) modalProjectDesc.textContent = desc;
 
@@ -214,19 +214,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 8. Smooth Scrolling offset for anchor links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (!targetId || targetId === '#') return;
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-                const headerOffset = 70;
+                const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const offsetPosition = elementPosition + (window.scrollY || window.pageYOffset) - headerOffset;
 
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: Math.max(0, offsetPosition),
                     behavior: 'smooth'
                 });
             }
